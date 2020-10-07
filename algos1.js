@@ -60,3 +60,28 @@ const fizzbuzz = num => {
 fizzbuzz(77);
 
 
+//----- MAX CHARACTER ------//
+// first we create a new object to keep track of the characters and occurrences of characters
+// When looping the string, we either add it to the object as 1 if it doesn't exist, or add 1 to it if it does
+// Then we loop through the object and keep track of the highest value and it's associated key
+const maxChar = str => {
+    let obj = {};
+    for(let char of str) {
+        obj[char] = obj[char] + 1 || 1;
+    }
+    let maxCharIdx = 0;
+    let maxChar = '';
+    for(let key in obj){
+        if(obj[key] > maxCharIdx){
+            maxCharIdx = obj[key];
+            maxChar = key;
+        }
+    }
+    return {
+        maxChar: maxChar,
+        idx: maxCharIdx
+    };
+}
+maxChar("hello");
+
+

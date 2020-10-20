@@ -35,6 +35,20 @@ isPal("12342");
 const revInt = num => {
     return parseInt(num.toString().split('').reverse().join('')) * Math.sign(num);
 }
+
+
+// without changing the int to a string
+const reverseInt = x => {
+    let k = Math.abs(x);
+    let rev = 0;
+    let lastDigit = 0;
+    while(k > 0){
+        lastDigit = k % 10;
+        rev = rev * 10 + lastDigit;
+        k = parseInt(k / 10);
+    }
+    return rev;
+}
 revInt(-743);
 
 
@@ -83,5 +97,28 @@ const maxChar = str => {
     };
 }
 maxChar("hello");
+
+
+//----- ROMAN NUMERAL TO NUM ------- //
+const romanToInt = s => {
+    let x = {
+        'I':1,
+        'V':5,
+        'X':10,
+        'L':50,
+        'C':100,
+        'D':500,
+        'M':1000
+    };
+    let ans = 0;
+    for(let i = 0; i < s.length; i++){
+        x[s[i]] < x[s[i+1]] ? ans -= x[s[i]] : ans += x[s[i]];
+    }
+    return ans;
+};
+
+
+
+
 
 

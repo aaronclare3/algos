@@ -100,6 +100,12 @@ maxChar("hello");
 
 
 //----- ROMAN NUMERAL TO NUM ------- //
+// Given a string of Roman Numerals, return the integer it represents. Ex. "IV" returns 4 and "XII" returns 12
+
+// First we create an object with keys being the characters and values being the integer value
+// We loop through the string given, and for each letter, we check the object for if the value at the key of the string is less than the next letter. 
+// If it is less, we subtract the value from the total, if not, we add it to the total. Ex if given 'IV', we check if the value at 'I' (1) is less than
+// the value at 'V' (5). If it is less, we know we need to take away 1 from the total.
 const romanToInt = s => {
     let x = {
         'I':1,
@@ -116,6 +122,31 @@ const romanToInt = s => {
     }
     return ans;
 };
+
+
+//----- LONGEST COMMON PREFIX ------- //
+// Given an array of strings, find the longest common prefix. For example, given ['lowest', 'low', 'loaf'], return 'lo'
+
+// The idea is that you want to create a variable 'prefix' which contains the longest current prefix. We want to first loop through each letter (character)
+// in the first word, and for each of those letters, we want to loop through the corresponding letter in the other words. If any of these don't match,
+// to the current letter in the first word, we just return the current prefix. If they do match, we take the current prefix and add the letter, 
+// and move to the next letter in the first word. If they match all the way through the first word we can return the prefix
+
+var longestCommonPrefix = strs => {
+    let prefix = "";
+    if(strs.length == 0) return prefix;
+    for(let i = 0; i < strs[0].length; i++){
+        let character = strs[0][i];
+        for(let x = 0; x < strs.length; x++){
+            if(strs[x][i] !== character) return prefix; 
+        } 
+        prefix = prefix + character;
+    }
+    return prefix;
+};
+
+
+
 
 
 

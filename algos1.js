@@ -1,3 +1,16 @@
+//----- RUNNING SUM ------//
+// Input: nums = [1,2,3,4]
+// Output: [1,3,6,10]
+// Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
+
+const runningSum = nums => {
+    for(let i = 1; i < nums.length; i++){
+        nums[i] = nums[i-1] + nums[i];
+    }
+    return nums;
+};
+
+
 //----- REVERSE STRING 1 ------//
 // split takes a string and puts characters into an array => ['h', 'e', 'l', 'l', 'o']
 // then we can call reverse on the array => ['o', 'l', 'l', 'e', 'h']
@@ -144,6 +157,37 @@ var longestCommonPrefix = strs => {
     }
     return prefix;
 };
+
+
+
+//----- VALID PARENTHESES ------- //
+// here we want to use a stack because for each open bracket, we want to push it onto the stack, and for each closing bracket, we want to make sure it matches the most recent opening bracket
+// If either we loop and find a character that does not match, or we finish looping and the stack is not empty, we know we do not have matching parenthesis
+
+var isValid = s => {
+    let stack = [];
+    for(let i = 0; i < s.length; i++){
+        switch (s[i]){
+            case '{':
+                stack.push("}");
+                break;
+            case '[':
+                stack.push("]");
+                break;
+            case '(':
+                stack.push(")");
+                break;
+            default:
+                if(s[i] !== stack.pop()){
+                    return false;
+                }    
+        }
+    }
+    return stack.length === 0;
+}
+
+
+
 
 
 

@@ -187,6 +187,32 @@ var isValid = s => {
 }
 
 
+//----- SUBTRACT PRODUCT AND SUM ------- //
+// Given a number n, take the product of each digit and subtract it from the sum of each digit.
+
+var subtractProductAndSum = function(n) {
+    let x = n.toString().split('');
+    let prod = 0;
+    let sum = 0;
+    for(let i = 0; i < x.length; i++){
+        sum += parseInt(x[i]);
+        if(i === 0){
+            prod = parseInt(x[i]);
+        }else {
+            prod = prod * parseInt(x[i])
+        }
+    }
+    return prod - sum;
+};
+
+var subtractProductAndSum = n => {
+    let digits = Array.from((String(n)), Number);
+    let sum = digits.reduce((a,b) => a+b);
+    let prod = digits.reduce((a,b) => a*b);
+    return prod-sum;
+}
+
+
 
 
 

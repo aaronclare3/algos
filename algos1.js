@@ -214,6 +214,49 @@ var subtractProductAndSum = n => {
 
 
 
+//----- Depth of parentheses ------- //
+// Given a string, determine the max depth of the parentheses. If there are none, return 0
+
+
+// My initial thought was to use a stack, as I have used that before in a parentheses problem, but after completing it, we can refactor it to be better
+var maxDepth = function(s) {
+    let stack = [];
+    let max = 0;
+    for(let i = 0; i < s.length; i++){
+        switch(s[i]){
+            case "(":
+                stack.push(s[i]);
+                break;
+            case ")":
+                stack.pop(s[i]);
+                break;
+            default:
+                break;
+        }
+        stack.length > max ? max = stack.length:"";
+    }
+    return max;
+};
+
+// Instead of using an array that acts like a stack, we could just use a variable to count the open parentheses and subtract one for the close parentheses. 
+// After all, that is basically what we did in the top one, we just inefficiently used an array
+var maxDepth = s => {
+    let count = 0;
+    let max = 0;
+    for(let i = 0; i < s.length; i++){
+        if(s[i] == "("){
+            count++;
+            // set max to either max, or count - whichever is bigger
+            max = Math.max(max, count);
+        }else if(s[i] == ")") {
+            count--;
+        }
+    }
+    return max;
+}
+
+
+
 
 
 

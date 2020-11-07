@@ -256,6 +256,23 @@ var maxDepth = s => {
 }
 
 
+//----- Linked List Binary to Decimal ------- //
+// Given head which is a reference node to a singly-linked list. The value of each node in the linked list is either 0 or 1. The entire linked list holds the binary representation of a number.
+// Return the decimal value of the number in the linked list.
+
+var getDecimalValue = function(head) {
+    let num = '';
+    while(head.next){
+        num = num + head.val.toString();
+        head = head.next;
+    }
+    num = num + head.val.toString();
+    return parseInt(num,2);
+};
+
+getDecimalValue([1,0,1,1,1]);
+
+
 
 
 

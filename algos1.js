@@ -267,19 +267,156 @@ var getDecimalValue = function(head) {
         head = head.next;
     }
     num = num + head.val.toString();
-    return parseInt(num,2);
+    return parseInt(num,2); // This converts the string of binary to a number using base 2
 };
 
 getDecimalValue([1,0,1,1,1]);
 
 
+//----- Unique Chars - CTCI 1.1 ------- //
+// Check if all characters in a given string are unique
+
+var areCharsUnique = str => {
+    for(let i = 0; i < str.length; i++){
+        for(let x = i+1; x < str.length; x++){
+            if(str[i] == str[x]){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+var charsUnique = str => {
+    let newObj = {};
+    for(let i = 0; i < str.length; i++){
+        let val = str[i];
+        console.log(val);
+        if(newObj[val]){
+            return false;
+        }
+        newObj[val] = true;
+    }
+    return true;
+}
+
+
+
+//----- String Permutation CTCI 1.2 ------- //
+// Given 2 strings, check whether they are permutations of each other
+
+var checkPerms = (str1, str2) => {
+    if(str1.length != str2.length){
+        return false;
+    }
+    let arr1 = str1.split('').sort();
+    let arr2 = str2.split('').sort();
+    for(let i = 0; i < arr1.length; i++){
+        if(arr1[i] !== arr2[i]){
+            console.log('here');
+            return false;
+        }
+    }
+    return true;
+}
+
+var checkPerms = (str1,str2) => {
+    if(str1.length !== str2.length){
+        return false;
+    }
+    let newObj = {};
+    for(let i = 0; i < str1.length; i++){
+        if(newObj[str1[i]]){
+            newObj[str1[i]]++;
+        }
+        newObj[str1[i]] = 1;
+    }
+
+    for(let x = 0; x < str1.length; x++){
+        if(!newObj[str2[x]]){
+            return false;
+        }else{
+            newObj[str2[x]]--;
+            if(newObj[str2[x]] < 0){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
+
+//----- URLify CTCI 1.3 ------- //
+// Given a string and a number n, replace every space with %20. n represents the final length that the string should be. If there is extra room at the end, add spaces.
+
+var URLify = str => {
+    let arr = str.split('');
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] == " "){
+            arr[i] = "%20";
+        }
+    }
+    return arr.join('');
+}
+
+var URLify = (str, n) => {
+    let count = 0;
+    let newStr = "";
+    for(let i = 0; i < str.length; i++){
+        if(str[i] != " "){
+            count++
+        }
+    }
+    count = n - count;
+    for(let i = 0; i < str.length; i++){
+        if(str[i] == " " && count > 0){
+            newStr += "%20";
+            count--;
+        }else if(str[i] != " "){
+            newStr += str[i];
+        }
+    }
+    while(count > 0){
+        newStr += "%20";
+        count--;
+    }
+    return newStr;
+}
 
 
 
 
 
+//----- Palindrome Permutations CTCI 1.4 ------- //
+// Given a string, determine whether or not it is a permutation of a palindrome. (Ex. "omm" is true because it could be rearranged to spell mom. "raecacr" is also true because you can rearrange it to spell racecar)
 
+var palPerm = str => {
+    let obj = {};
+    for(let i = 0; i < str.length; i++){
+        let x = str[i];
+        if(!obj[x]){
+            obj[x] = 1;
+        }else{
+            obj[x]++;
+        }
+    }
+    let countOdds = 0;
+    for(let key in obj){
+        if(obj[key] % 2 != 0){
+            countOdds++;
+        }
+        if(countOdds > 1){
+            return false;
+        }
+    }
+    return true;
+}
 
-
-
+console.log(
+    palPerm("hello") == false,
+    palPerm("racecar") == true,
+    palPerm("lllehohel") == true,
+    palPerm("tacoca") == false
+    )
 

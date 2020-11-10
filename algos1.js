@@ -420,3 +420,46 @@ console.log(
     palPerm("tacoca") == false
     )
 
+
+
+//----- One Edit Away CTCI 1.5 ------- //
+// Given 2 strings, determine whether they are just one edit away. An edit can be an insertion of a letter, a deletion of a letter, or a replacement of a letter.
+
+
+var checkEdits = (str1, str2) => {
+    // If they are more than 1 length apart, they can't be one edit away
+    if(Math.abs(str1.length - str2.length) > 1){
+        return false;
+    }
+    let longerStr;
+    let shorterStr;
+    let count = 0;
+    let x = 0;
+    if(str1.length != str2.length){
+        // Check for insertion or deletion (same thing in reverse)
+        if(str1.length > str2.length){
+            longerStr = str1;
+            shorterStr = str2;
+        }else{
+            longerStr = str2;
+            shorterStr = str1;
+        }
+
+        for(let i = 0; i < longerStr.length; i++){
+            // If the characters dont match, I want to pause the index on the shorter str, but increment the longer str
+            if(longerStr[i] != shorterStr[x]){
+                x--;
+                count++;
+            }
+            x++;
+        }
+    }else{
+        // This checks for replacement
+        for(let i = 0; i < str1.length; i++){
+            if(str1[i] != str2[i]){
+                count++;
+            }
+        }
+    }
+    return count > 1 ? false : true;
+}

@@ -463,3 +463,55 @@ var checkEdits = (str1, str2) => {
     }
     return count > 1 ? false : true;
 }
+
+
+var stringCompression = str => {
+    let num = 1;
+    let finalStr = "";
+    for(let i = 0; i < str.length; i++){
+        let currStr = str[i];
+        while(str[i] == str[i+1]){
+            num++;
+            i++;
+        }
+        finalStr += `${currStr}` + `${num}`; 
+        num = 1;
+    }
+    return finalStr.length > str.length ? str : finalStr;
+}
+
+var stringCompression = str => {
+    let num = 0;
+    let finalStr = "";
+    for(let i = 0; i < str.length; i++){
+        num++;
+        if(str[i] != str[i+1]){
+            finalStr += `${str[i]}`+`${num}`;
+            num = 0;
+        }
+    }
+    return finalStr.length > str.length ? str : finalStr;
+}
+
+
+var rotateMatrix = arr => {
+    for(let i = 0; i < arr.length; i++){
+        for(let x = i; x < arr[i].length; x++){
+            let temp = arr[i][x];
+            arr[i][x] = arr[x][i];
+            arr[x][i] = temp;
+        }
+    }
+    for(let i = 0; i < arr.length; i++){
+        for(let x = 0; x < arr.length/2; x++){
+            let temp = arr[i][x];
+            arr[i][x] = arr[i][arr.length-x-1];
+            arr[i][arr.length-x-1] = temp;
+        }
+    }
+    return arr;
+}
+
+
+
+// ZERO MATRIX

@@ -492,26 +492,3 @@ var stringCompression = str => {
     }
     return finalStr.length > str.length ? str : finalStr;
 }
-
-
-var rotateMatrix = arr => {
-    for(let i = 0; i < arr.length; i++){
-        for(let x = i; x < arr[i].length; x++){
-            let temp = arr[i][x];
-            arr[i][x] = arr[x][i];
-            arr[x][i] = temp;
-        }
-    }
-    for(let i = 0; i < arr.length; i++){
-        for(let x = 0; x < arr.length/2; x++){
-            let temp = arr[i][x];
-            arr[i][x] = arr[i][arr.length-x-1];
-            arr[i][arr.length-x-1] = temp;
-        }
-    }
-    return arr;
-}
-
-
-
-// ZERO MATRIX

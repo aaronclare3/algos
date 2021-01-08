@@ -15,20 +15,22 @@ const runningSum = nums => {
 // split takes a string and puts characters into an array => ['h', 'e', 'l', 'l', 'o']
 // then we can call reverse on the array => ['o', 'l', 'l', 'e', 'h']
 // then we can join the array into a string again 'olleh'
-const revStringShort = str => {
+const revString = str => {
     return str.split('').reverse().join('');
 }
-revStringShort("Hello there");
+console.log(revString('helloworld123'))
+
 
 //----- REVERSE STRING 2 ------//
-// Create a new empty string, loop through each character of the str and add that char first, then the rest of the newStr
-const revStringLong = str => {
-    let newStr = "";
-    for (let char of str)
-    newStr = char + newStr;
-    return newStr;
+// Create a new empty string, loop through each character of the str from the back and add that char to the new string
+const revStringTwo = str => {
+    let x = '';
+    for(let i = str.length-1; i>=0; i--){
+        x+=str[i];
+    }
+    return x;
 }
-revStringLong("Hello there");
+console.log(revStringTwo('helloworld123'))
 
 
 //----- PALINDROME ------//
@@ -260,17 +262,17 @@ var maxDepth = s => {
 // Given head which is a reference node to a singly-linked list. The value of each node in the linked list is either 0 or 1. The entire linked list holds the binary representation of a number.
 // Return the decimal value of the number in the linked list.
 
-var getDecimalValue = function(head) {
-    let num = '';
-    while(head.next){
-        num = num + head.val.toString();
-        head = head.next;
-    }
-    num = num + head.val.toString();
-    return parseInt(num,2); // This converts the string of binary to a number using base 2
-};
+// var getDecimalValue = function(head) {
+//     let num = '';
+//     while(head.next){
+//         num = num + head.val.toString();
+//         head = head.next;
+//     }
+//     num = num + head.val.toString();
+//     return parseInt(num,2); // This converts the string of binary to a number using base 2
+// };
 
-getDecimalValue([1,0,1,1,1]);
+// getDecimalValue([1,0,1,1,1]);
 
 
 //----- Unique Chars - CTCI 1.1 ------- //
@@ -492,3 +494,4 @@ var stringCompression = str => {
     }
     return finalStr.length > str.length ? str : finalStr;
 }
+

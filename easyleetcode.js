@@ -10,6 +10,20 @@ const runningSum = nums => {
     return nums;
 };
 
+// Reverse an array in place
+const revArrInPlace = arr => {
+    let len = arr.length;
+    let halfLen = Math.round(arr.length/2);
+    for(let i = 0; i < halfLen; i++){
+        let temp = arr[i];
+        arr[i] = arr[len-i-1];
+        arr[len-i-1] = temp;
+    }
+    return arr;
+}
+
+console.log(revArrInPlace([0,1,2,3,4,5,6,22]));
+
 
 //----- REVERSE STRING 1 ------//
 // split takes a string and puts characters into an array => ['h', 'e', 'l', 'l', 'o']
@@ -495,4 +509,18 @@ var stringCompression = str => {
     }
     return finalStr.length > str.length ? str : finalStr;
 }
+
+// Reverse array in place
+const revArrInPlace = arr => {
+    let len = arr.length;
+    let halfLen = Math.round(arr.length/2);
+    for(let i = 0; i < halfLen; i++){
+        let temp = arr[i];
+        arr[i] = arr[len-i-1];
+        arr[len-i-1] = temp;
+    }
+    return arr;
+}
+
+console.log("yeyeyeye", revArrInPlace([0,1,2,3,4,5,6,22]));
 

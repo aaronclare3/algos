@@ -25,3 +25,18 @@ const factorial = (n) => {
 
 console.log(factorial(7));
 console.log(factorial(8));
+
+
+// Reverse String
+// VIDEO EXAMPLE: https://www.youtube.com/watch?v=AgMq_wzwAXM
+
+// EXPLANATION: Base case is when there is no string. If there is still a string, call the function again with the first character chopped off and added to the end.
+
+const revString = str => {
+    if(!str){
+        return "";
+    }
+    return revString(str.substring(1)) + str[0];
+}
+
+console.log(revString("helloworld"))

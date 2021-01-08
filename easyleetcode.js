@@ -54,17 +54,18 @@ const revInt = num => {
 
 // without changing the int to a string
 const reverseInt = x => {
-    let k = Math.abs(x);
+    let absInt = Math.abs(x);
     let rev = 0;
-    let lastDigit = 0;
-    while(k > 0){
-        lastDigit = k % 10;
-        rev = rev * 10 + lastDigit;
-        k = parseInt(k / 10);
+    let lastDig = 0;
+    while(absInt > 0){
+        lastDig = absInt % 10;
+        rev = rev * 10 + lastDig;
+        absInt = Math.floor(absInt/10);
     }
     return rev;
 }
-revInt(-743);
+console.log(reverseInt(-743));
+
 
 
 

@@ -53,3 +53,27 @@ const insertionSort = (arr) => {
 
 console.log(insertionSort([5,4,3,2,1]));
 console.log(insertionSort([8,4,1,9,10,6]));
+
+
+// SELECTION SORT
+// VIDEO EXAMPLE: https://www.youtube.com/watch?v=g-PGLbMth_g
+
+// EXPLANATION: 
+
+// TIME COMPLEXITY: 
+
+const selectionSort = arr => {
+    let sorted = 0;
+    for(let i = 0; i < arr.length; i++){
+        for(let j = i+1; j < arr.length; j++){
+            if(arr[j] < arr[i]){
+                let temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+    return arr;
+}
+
+console.log(selectionSort([1,2,6,7,2,3]))

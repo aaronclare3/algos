@@ -510,4 +510,3 @@ var stringCompression = str => {
     return finalStr.length > str.length ? str : finalStr;
 }
 
-

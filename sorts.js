@@ -77,3 +77,62 @@ const selectionSort = arr => {
 }
 
 console.log(selectionSort([1,2,6,7,2,3]))
+
+
+
+
+// QUICK SORT
+// VIDEO EXAMPLE: https://www.youtube.com/watch?v=uXBnyYuwPe8
+
+// EXPLANATION: In Quicksort, you pick a value 'pivot' which is the value you want to find a place for. You put all elements into the array to the left or to the right of the pivot depending on if the element is more or less than pivot
+// Once you know the element 'pivot' is in the correct space, you call quicksort again on the elements left of the pivot and again on the elements right of the pivot. You keep doing this recursively until the array is sorted.
+
+// TIME COMPLEXITY: O(n * log(n))
+
+const basicQuicksort = arr => {
+    const pivot = arr[arr.length-1];
+    let leftArr = [];
+    let rightArr = [];
+    if(arr.length <= 1){
+        return arr;
+    }
+    for(const el of arr.slice(0, arr.length-1)){
+        el < pivot ? leftArr.push(el) : rightArr.push(el);
+    }
+    return [...basicQuicksort(leftArr), pivot, ...basicQuicksort(rightArr)];
+}
+
+console.log(basicQuicksort([1,6,4,2,1]))
+
+
+
+
+const quickSortInPlace = (arr, left = 0, right = arr.length-1) => {
+    if(left < right){
+        const pivot = partition(arr, left, right);
+        quickSortInPlace(arr, left, pivot - 1);
+        quickSortInPlace(arr, pivot + 1, right);
+    }
+    return arr;
+}
+
+const partition = (arr, left, right) => {
+    const pivot = arr[right];
+    let i = left-1;
+    for(let j = left; j < right; j++){
+        if(arr[j] <= pivot){
+            i++;
+            swap(arr, j, i);
+        }
+    }
+    swap(arr, i+1, right);
+    return i+1;
+}
+const swap = (items, first, second) => {
+    let temp = items[first];
+    items[first] = items[second];
+    items[second] = temp;
+}
+
+
+console.log("----", quickSortInPlace([1,6,4,2,1]))

@@ -510,3 +510,58 @@ var stringCompression = str => {
     return finalStr.length > str.length ? str : finalStr;
 }
 
+// DEFANG IP ADDRESS
+// Given a valid (IPv4) IP address, return a defanged version of that IP address.
+// A defanged IP address replaces every period "." with "[.]".
+
+const defangIPaddr = address => {
+    let newStr = "";
+    for(let i = 0; i < address.length; i++){
+        if(address[i] == "."){
+            newStr+="[.]";
+        }else{
+            newStr+=address[i]
+        }
+    }
+    return newStr;
+};
+
+// EXTRA CANDIES
+// Given the array candies and the integer extraCandies, where candies[i] represents the number of candies that the ith kid has.
+// For each kid check if there is a way to distribute extraCandies among the kids such that he or she can have the greatest number of candies among them. Notice that multiple kids can have the greatest number of candies.
+// Input: candies = [2,3,5,1,3], extraCandies = 3
+// Output: [true,true,true,false,true] 
+
+const kidsWithCandies = (candies, extraCandies) => {
+    let max = 0;
+    for(let i = 0; i < candies.length; i++){
+        if(candies[i] > max){
+            max = candies[i];
+        }
+    }
+    for(let i = 0; i < candies.length; i++){
+        candies[i] = candies[i] + extraCandies >= max ? true : false; 
+    }
+    return candies;
+}
+
+
+// RICHEST CUSTOMER
+// Input: accounts = [[1,5],[7,3],[3,5]]
+// Output: 10
+
+const maximumWealth = arr => {
+    let globalMax = 0;
+    for (let i = 0; i < arr.length; i++){
+        let currCust = 0;
+        for(let j = 0; j < arr[i].length; j++){
+            currCust += arr[i][j];
+        }
+        if(currCust > globalMax) globalMax = currCust;
+    }
+    return globalMax;
+}
+
+
+
+

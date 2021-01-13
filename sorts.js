@@ -54,7 +54,7 @@ console.log("insertion sort", insertionSort([5,4,3,2,1]));
 // SELECTION SORT
 // VIDEO EXAMPLE: https://www.youtube.com/watch?v=g-PGLbMth_g
 
-// EXPLANATION: 
+// EXPLANATION: Do one loop to find the lowest value, swap that with the last value of the sorted part
 
 // TIME COMPLEXITY: 
 
@@ -132,4 +132,35 @@ const swap = (items, first, second) => {
 
 
 console.log("Quick Sort in Place", quickSortInPlace([1,6,4,2,1]))
+
+
+
+
+// MERGE SORT
+// VIDEO EXAMPLE: https://www.youtube.com/watch?v=xsmyLxbi-Kc
+
+// EXPLANATION: We start by splitting the array in half into a 'left' and 'right' side. We keep splitting until each array is sorted (each array has length 1). We return at array length 1 and begin combining the sorted arrays in a new array of double the length. For example, we combine 2 arrays of size 2 into one array of size 4.
+
+// TIME COMPLEXITY: O(n * log(n))
+
+
+const merge = arr => {
+    if(arr.length <= 1) return arr;
+    let middle = Math.floor(arr.length / 2);
+    const left = arr.slice(0, middle)
+    const right = arr.slice(middle)
+    return mergeHelper(merge(left), merge(right));
+}
+
+const mergeHelper = (left, right) => {
+    let newArr = [];
+    while(left.length && right.length){
+        left[0] < right[0] ? newArr.push(left.shift()) : newArr.push(right.shift());
+    }
+    return newArr.concat(left).concat(right);
+}
+
+
+console.log("merge", merge([7,8,3,1]))
+
 

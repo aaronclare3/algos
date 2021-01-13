@@ -21,8 +21,7 @@ const bubbleSort = (arr) => {
     return arr;
 }
 
-console.log(bubbleSort([5,4,3,2,1]));
-console.log(bubbleSort([8,4,1,9,10,6]));
+console.log("bubble sort", bubbleSort([5,4,3,2,1]));
 
 
 
@@ -34,25 +33,22 @@ console.log(bubbleSort([8,4,1,9,10,6]));
 
 // TIME COMPLEXITY: We would still consider this O(n^2), although it is faster than bubble sort because the front section will remain sorted. However worst case is still close enough to O(n^2) that we have to consider it that.
 
-const insertionSort = (arr) => {
-    for(let i = 0; i < arr.length; i++){
-        let x = i+1;
-        let change = i;
-        if(arr[x] < arr[i]){
-            while(arr[x] < arr[change]){
-                let temp = arr[change];
-                arr[change] = arr[x];
-                arr[x] = temp; 
-                change--;
-                x--;
-            } 
+const insertionSort = arr => {
+    for(let i = 1; i < arr.length; i++){
+        if(arr[i] < arr[i-1]){
+            while(arr[i] < arr[i-1]){
+                let temp = arr[i];
+                arr[i] = arr[i-1];
+                arr[i-1] = temp;
+                i--;
+            }
         }
     }
     return arr;
 }
 
-console.log(insertionSort([5,4,3,2,1]));
-console.log(insertionSort([8,4,1,9,10,6]));
+
+console.log("insertion sort", insertionSort([5,4,3,2,1]));
 
 
 // SELECTION SORT
@@ -63,21 +59,21 @@ console.log(insertionSort([8,4,1,9,10,6]));
 // TIME COMPLEXITY: 
 
 const selectionSort = arr => {
-    let sorted = 0;
     for(let i = 0; i < arr.length; i++){
+        let minIdx = i;
         for(let j = i+1; j < arr.length; j++){
-            if(arr[j] < arr[i]){
-                let temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+            if(arr[j] < arr[minIdx]){
+                minIdx = j
             }
         }
+        let temp = arr[i];
+        arr[i] = arr[minIdx];
+        arr[minIdx] = temp;
     }
     return arr;
 }
 
-console.log(selectionSort([1,2,6,7,2,3]))
-
+console.log('Selection Sort', selectionSort([5,4,3,2]))
 
 
 
@@ -102,7 +98,7 @@ const basicQuicksort = arr => {
     return [...basicQuicksort(leftArr), pivot, ...basicQuicksort(rightArr)];
 }
 
-console.log(basicQuicksort([1,6,4,2,1]))
+console.log("Basic Quick Sort", basicQuicksort([1,6,4,2,1]))
 
 
 
@@ -135,4 +131,5 @@ const swap = (items, first, second) => {
 }
 
 
-console.log("----", quickSortInPlace([1,6,4,2,1]))
+console.log("Quick Sort in Place", quickSortInPlace([1,6,4,2,1]))
+

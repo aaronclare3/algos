@@ -562,6 +562,73 @@ const maximumWealth = arr => {
     return globalMax;
 }
 
+// COUNT THE NUMBER OF CONSISTENT STRINGS
+
+// You are given a string allowed consisting of distinct characters and an array of strings words. A string is consistent if all characters in the string appear in the string allowed. Return the number of consistent strings in the array words.
+
+// Input: allowed = "ab", words = ["ad","bd","aaab","baa","badab"]
+// Output: 2
+// Explanation: Strings "aaab" and "baa" are consistent since they only contain characters 'a' and 'b'.
+
+const countConsistentStrings = (allowed, words) => {
+    let count = 0; 
+    for(let w in words){
+        let x = true;
+        for(let s in words[w]){
+            if(!allowed.includes(words[w][s])){
+                x = false;
+            }
+        }
+        x && count++;
+    }
+    return count;
+}
+
+console.log(countConsistentStrings("ab", ["ad","bd","aaab","baa","badab"]))
 
 
 
+// 1221. Split a String in Balanced Strings
+
+// Balanced strings are those who have equal quantity of 'L' and 'R' characters. Given a balanced string s split it in the maximum amount of balanced strings. Return the maximum amount of splitted balanced strings.
+// Input: s = "RLRRLLRLRL"
+// Output: 4
+// Explanation: s can be split into "RL", "RRLL", "RL", "RL", each substring contains same number of 'L' and 'R'.
+
+const balancedStringSplit = (str) => {
+    let balance = 0, count = 0;
+    for(let s in str){
+        str[s] == "L" ? balance--:balance++;
+        if(balance == 0){
+            count++
+        }
+        
+    }
+    return count;
+};
+console.log("Balanced String", balancedStringSplit("RLRRLLRLRL"))
+
+
+// 1678. Goal Parser Interpretation
+// You own a Goal Parser that can interpret a string command. The command consists of an alphabet of "G", "()" and/or "(al)" in some order. The Goal Parser will interpret "G" as the string "G", "()" as the string "o", and "(al)" as the string "al". The interpreted strings are then concatenated in the original order. Given the string command, return the Goal Parser's interpretation of command.
+
+// Input: command = "G()(al)"
+// Output: "Goal"
+
+const interpret = (command) => {
+    let str = "";
+    for(let s = 0; s < command.length; s++){
+        if(command[s] == "(" && command[s+1] != "a"){
+            str += "o";
+            s++;
+        }else if (command[s] == "("){
+            str+="al";
+            s+=3;
+        }else if(command[s] == "G"){
+            str+="G"
+        }
+    }
+    return str;
+};
+
+console.log(interpret("G()(al)"))

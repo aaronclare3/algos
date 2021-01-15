@@ -643,3 +643,22 @@ console.log(interpret("G()(al)"))
 const arrayStringsAreEqual = (word1, word2) => {
     return word1.join('') == word2.join('');
 };
+
+
+var sumOddLengthSubarrays = function(arr) {
+    let tot = 0;
+    let num = 0;
+    while(num < arr.length){
+        for(let i = 0; i < arr.length; i++){
+            if(arr[i+num]){
+                for(let j = i; j <= num+i; j++){
+                    tot += arr[j];
+                }
+            }
+        }
+        num += 2;
+    }
+    return tot;
+}
+
+console.log(sumOddLengthSubarrays([1,4,2,5,3]))

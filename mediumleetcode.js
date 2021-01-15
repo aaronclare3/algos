@@ -63,3 +63,36 @@ var zeroMatrix = arr => {
     }
     return arr;
 }
+
+
+
+
+
+//----- 1721. Swapping Nodes in a Linked List ----- //
+// You are given the head of a linked list, and an integer k.
+// Return the head of the linked list after swapping the values of the kth node from the beginning and the kth node from the end (the list is 1-indexed).
+
+var swapNodes = function(head, k) {
+    let x = k - 1;
+    let r1 = head;
+    while(x > 0){
+        r1 = r1.next;
+        x--;
+    }
+    let r2 = head;
+    count = 1;
+    while(r2.next){
+        count++;
+        r2 = r2.next;
+    }
+    let runnerCount = count - k + 1;
+    let r3 = head;
+    while(runnerCount > 1){
+        r3 = r3.next;
+        runnerCount--;
+    }
+    let temp = r3.val;
+    r3.val = r1.val;
+    r1.val = temp;
+    return head;
+}

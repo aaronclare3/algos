@@ -40,3 +40,64 @@ const revString = str => {
 }
 
 console.log(revString("helloworld"))
+
+
+// MERGE SORT
+// VIDEO EXAMPLE: https://www.youtube.com/watch?v=xsmyLxbi-Kc
+
+// EXPLANATION: We start by splitting the array in half into a 'left' and 'right' side. We keep splitting until each array is sorted (each array has length 1). We return at array length 1 and begin combining the sorted arrays in a new array of double the length. For example, we combine 2 arrays of size 2 into one array of size 4.
+
+// TIME COMPLEXITY: O(n * log(n))
+
+const merge = arr => {
+    if(arr.length <= 1) return arr;
+    let middle = Math.floor(arr.length / 2);
+    const left = arr.slice(0, middle)
+    const right = arr.slice(middle)
+    return mergeHelper(merge(left), merge(right));
+}
+
+const mergeHelper = (left, right) => {
+    let newArr = [];
+    while(left.length && right.length){
+        left[0] < right[0] ? newArr.push(left.shift()) : newArr.push(right.shift());
+    }
+    return newArr.concat(left).concat(right);
+}
+
+console.log("merge", merge([7,8,3,1]))
+
+
+
+
+
+
+// QUICK SORT
+// EXPLANATION: In Quicksort, you pick a value 'pivot' which is the value you want to find a place for. You put all elements into the array to the left or to the right of the pivot depending on if the element is more or less than pivot
+// Once you know the element 'pivot' is in the correct space, you call quicksort again on the elements left of the pivot and again on the elements right of the pivot. You keep doing this recursively until the array is sorted.
+// Big O: 
+
+
+const quick = (arr, left = 0, right = arr.length - 1) => {
+    if(left < right){
+        let pivot = partition(arr, left, right);
+        quick(arr, left, pivot-1);
+        quick(arr, pivot+1, right);
+    }
+    return arr;
+}
+
+const partition = (arr, left, right) => {
+    let pivot = arr[right];
+    let i = left - 1;
+    for(let j = left; j < right; j++){
+        if(arr[j] <= pivot){
+            i++;
+            swap(arr, j, i);
+        }
+    }
+    swap(arr, i+1, right);
+    return i+1;
+}
+
+console.log("quick", quick([5,3,6,1]))

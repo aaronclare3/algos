@@ -127,3 +127,9 @@ const insert = arr => {
 }
 
 console.log("insert", insert([5,3,6,1]))
+
+
+
+
+
+

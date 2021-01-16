@@ -677,3 +677,20 @@ const decode = (encoded, first) => {
 };
 
 console.log("decode XOR", decode([5,1,3,5], 6))
+
+
+
+// 1486. XOR Operation in an Array
+// Given an integer n and an integer start. Define an array nums where nums[i] = start + 2*i (0-indexed) and n == nums.length. Return the bitwise XOR of all elements of nums.
+// Input: n = 5, start = 0
+// Output: 8
+
+const xorOperation = (n, start) => {
+    let ans = 0;
+    for(let i = 0; i < n; i++){
+        ans^=start+2*i;
+    }
+    return ans;
+};
+
+console.log("XOR Array", xorOperation(5,0) == 8);

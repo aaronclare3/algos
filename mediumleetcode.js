@@ -159,3 +159,110 @@ console.log(sched(sched1, sched1bound, sched2, sched2bound, meetingDurationHours
 
 
 
+
+// 807. Max Increase to Keep City Skyline
+// In a 2 dimensional array grid, each value grid[i][j] represents the height of a building located there. We are allowed to increase the height of any number of buildings, by any amount (the amounts can be different for different buildings). Height 0 is considered to be a building as well. 
+
+// At the end, the "skyline" when viewed from all four directions of the grid, i.e. top, bottom, left, and right, must be the same as the skyline of the original grid. A city's skyline is the outer contour of the rectangles formed by all the buildings when viewed from a distance. See the following example.
+
+// What is the maximum total sum that the height of the buildings can be increased?
+
+// Example:
+// Input: grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]
+// Output: 35
+// Explanation: 
+// The grid is:
+// [ [3, 0, 8, 4], 
+//   [2, 4, 5, 7],
+//   [9, 2, 6, 3],
+//   [0, 3, 1, 0] ]
+
+// The skyline viewed from top or bottom is: [9, 4, 8, 7]
+// The skyline viewed from left or right is: [8, 7, 9, 3]
+
+// The grid after increasing the height of buildings without affecting skylines is:
+
+// gridNew = [ [8, 4, 8, 7],
+//             [7, 4, 7, 7],
+//             [9, 4, 8, 7],
+//             [3, 3, 3, 3] ]
+
+const maxIncreaseKeepingSkyline = (grid) => {
+    let result = 0;
+    let max_row_val = [];
+    let max_col_val = [];
+    for(let row = 0; row < grid.length; row++){
+        let rowMax = 0;
+        let colMax = 0;
+        for(let col = 0; col < grid[row].length; col++){
+            if(grid[row][col] > rowMax){
+                rowMax = grid[row][col];
+            }
+            if(grid[col][row] > colMax){
+                colMax = grid[col][row];
+            }
+        }
+        max_row_val.push(rowMax);
+        max_col_val.push(colMax);
+    }
+    for(let i = 0; i < grid.length; i++){
+        for(let j = 0; j < grid[i].length; j++){
+            result += Math.min(max_row_val[i], max_col_val[j]) - grid[i][j];
+        }
+    }
+    return result;
+};
+
+console.log(maxIncreaseKeepingSkyline([[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]));
+
+
+
+// 1282. Group the People Given the Group Size They Belong To
+
+// There are n people that are split into some unknown number of groups. Each person is labeled with a unique ID from 0 to n - 1.
+
+// You are given an integer array groupSizes, where groupSizes[i] is the size of the group that person i is in. For example, if groupSizes[1] = 3, then person 1 must be in a group of size 3.
+
+// Return a list of groups such that each person i is in a group of size groupSizes[i].
+
+// Each person should appear in exactly one group, and every person must be in a group. If there are multiple answers, return any of them. It is guaranteed that there will be at least one valid solution for the given input.
+
+ 
+
+// Example 1:
+
+// Input: groupSizes = [3,3,3,3,3,1,3]
+// Output: [[5],[0,1,2],[3,4,6]]
+// Explanation: 
+// The first group is [5]. The size is 1, and groupSizes[5] = 1.
+// The second group is [0,1,2]. The size is 3, and groupSizes[0] = groupSizes[1] = groupSizes[2] = 3.
+// The third group is [3,4,6]. The size is 3, and groupSizes[3] = groupSizes[4] = groupSizes[6] = 3.
+// Other possible solutions are [[2,1,6],[5],[0,4,3]] and [[5],[0,6,2],[4,3,1]].
+
+
+const groupThePeople = (arr) => {
+    let ans = [];
+    let helper = {}
+    for(let i = 0; i < arr.length; i++){
+        // el is the current person
+        let el = arr[i];
+        // if the group doesn't exist yet, create it and a container to hold the groups
+        if(!helper[el]) helper[el] = [[]];
+        // if the last group in the 3's group arr is not full yet, add the index to that group
+        if(helper[el][helper[el].length-1].length != el){
+            helper[el][helper[el].length-1].push(i);
+        // if it is full, create another arr and add it to the 3's group
+        }else{
+            helper[el].push([i]);
+        }
+    }
+    // Loop through the groups (groups are sorted by how many people are in them), and add the groups to the ans
+    for(let key in helper){
+        ans = [...ans, ...helper[key]]
+    }
+    return ans;
+};
+
+
+
+

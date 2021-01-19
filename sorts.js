@@ -161,6 +161,28 @@ const mergeHelper = (left, right) => {
 }
 
 
-console.log("merge", merge([7,8,3,1]))
+console.log("merge", merge([7,8,3,1,5]))
+
+
+
+var mergeleet = (nums1, m, nums2, n) => {
+    let num1 = nums1.slice(0, m);
+    let num2 = nums2.slice(0, n);
+    console.log(num1, num2)
+    let ans = [];
+    while(num1.length && num2.length){
+        if(num1[0] < num2[0]){
+            ans.push(num1.shift());
+        }else{
+            ans.push(num2.shift());
+        }
+    }
+    console.log("ans", ans)
+    let ans1 = ans.concat(num1).concat(num2);
+    console.log("ans1", ans1)
+    return ans1;
+};
+
+console.log("merge", mergeleet([1,2,3,0,0,0], 3, [2,5,6], 3))
 
 

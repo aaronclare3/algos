@@ -79,7 +79,7 @@ console.log("merge", merge([7,8,3,1]))
 
 
 const quick = (arr, left = 0, right = arr.length - 1) => {
-    if(left < right){
+    if(left <= right){
         let pivot = partition(arr, left, right);
         quick(arr, left, pivot-1);
         quick(arr, pivot+1, right);

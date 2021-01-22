@@ -23,7 +23,7 @@ const bubble = arr => {
     return arr;
 }
 
-console.log("bubble", bubble([7,2,1,7,3,5]));
+// console.log("bubble", bubble([7,2,1,7,3,5]));
 
 
 
@@ -55,7 +55,7 @@ const partition = (arr, left, right) => {
     return i+1;
 }
 
-console.log("quick", quick([5,3,6,1]))
+// console.log("quick", quick([5,3,6,1]))
 
 
 
@@ -77,7 +77,7 @@ const select = arr => {
     return arr;
 }
 
-console.log("seelect", select([5,3,6,1]))
+// console.log("seelect", select([5,3,6,1]))
 
 
 
@@ -107,7 +107,7 @@ const mergeHelper = (arr, left, right) => {
     return newArr.concat(left).concat(right);
 }
 
-console.log("merge", merge([5,3,6,1]))
+// console.log("merge", merge([5,3,6,1]))
 
 
 // INSERTION SORT
@@ -126,7 +126,10 @@ const insert = arr => {
     return arr;
 }
 
-console.log("insert", insert([5,3,6,1]))
+// console.log("insert", insert([5,3,6,1]))
+
+
+
 
 
 

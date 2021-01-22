@@ -802,3 +802,49 @@ const minTimeToVisitAllPoints = (arr) => {
 };
 
 
+// International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows: "a" maps to ".-", "b" maps to "-...", "c" maps to "-.-.", and so on. For convenience, the full table for the 26 letters of the English alphabet is given below:
+// [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+// Now, given a list of words, each word can be written as a concatenation of the Morse code of each letter. For example, "cab" can be written as "-.-..--...", (which is the concatenation "-.-." + ".-" + "-..."). We'll call such a concatenation, the transformation of a word.
+
+// Return the number of different transformations among all words we have.
+
+
+// Example:
+// Input: words = ["gin", "zen", "gig", "msg"]
+// Output: 2
+// Explanation: 
+// The transformation of each word is:
+// "gin" -> "--...-."
+// "zen" -> "--...-."
+// "gig" -> "--...--."
+// "msg" -> "--...--."
+
+// There are 2 different transformations, "--...-." and "--...--.".
+
+const uniqueMorseRepresentations = (words) => {
+    let morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
+    let alpha = {a:0, b:1, c:2, d:3, e:4, f:5,g:6, h:7, i:8, j:9,k:10, l:11, m:12, n:13, o:14, p:15, q:16, r:17, s:18, t:19, u:20, v:21, w:22, x:23, y:24, z:25}
+    let ans = 0;
+    let obj = {};
+    for(let i = 0; i < words.length; i++){
+        let code = "";
+        for(let j = 0; j < words[i].length; j++){
+            let alphaKey = words[i][j];
+            if(alphaKey in alpha){
+                code += morse[alpha[alphaKey]];
+            }
+        }
+        if(obj[code]){
+            ans+=0
+        }else{
+            obj[code] = 1;
+            ans+=1;
+        }
+    }
+    return ans
+};
+
+
+
+
+

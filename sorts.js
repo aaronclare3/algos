@@ -185,3 +185,22 @@ var mergeleet = (nums1, m, nums2, n) => {
 console.log("merge", mergeleet([1,2,3,0,0,0], 3, [2,5,6], 3))
 
 
+
+const bubble1 = (arr) => {
+    let sorted = false;
+    while(!sorted){
+        sorted = true;
+        for(let i = 0; i < arr.length; i++){
+            if(arr[i] > arr[i+1]){
+                sorted = false;
+                let temp = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = temp;
+            }
+        }
+    }
+    return arr;
+}
+
+console.log(bubble1([1,6,3,1,4,5]))
+

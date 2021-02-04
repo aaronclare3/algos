@@ -964,3 +964,24 @@ const findTheDistanceValue = (arr1, arr2, d) => {
   }
   return arr1.length - count;
 };
+
+// 884. Uncommon Words from Two Sentences
+// We are given two sentences A and B.  (A sentence is a string of space separated words.  Each word consists only of lowercase letters.)
+// A word is uncommon if it appears exactly once in one of the sentences, and does not appear in the other sentence.
+// Return a list of all uncommon words.
+// You may return the list in any order.
+
+const uncommonFromSentences = (A, B) => {
+  let arr = [];
+  let obj = {};
+  for (const word of A.split(" ")) {
+    obj[word] ? obj[word]++ : (obj[word] = 1);
+  }
+  for (const word of B.split(" ")) {
+    obj[word] ? obj[word]++ : (obj[word] = 1);
+  }
+  for (let keys in obj) {
+    if (obj[keys] == 1) arr.push(keys);
+  }
+  return arr;
+};

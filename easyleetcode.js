@@ -985,3 +985,14 @@ const uncommonFromSentences = (A, B) => {
   }
   return arr;
 };
+
+const firstLetter = (str) => {
+  const first = str[0];
+  if (Number(first) * 0 === 0) return "Digit";
+  else if (/^[a-zA-Z0-9- ]*$/.test(str) == false) return "Other";
+  else if (first === first.toUpperCase()) return "Upper";
+  else if (first === first.toLowerCase()) return "Lower";
+};
+
+console.log(firstLetter("Fizz"));
+console.log("@".toUpperCase() === "@");

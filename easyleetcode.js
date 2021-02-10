@@ -1022,3 +1022,22 @@ const canPlaceFlowers = (flowerbed, n) => {
   }
   return n <= 0;
 };
+
+// mutateTheArray
+// given an array 'arr', mutate each index of arr so that arr[i] = arr[i-1] + arr[i] + arr[i+1]. If arr[i-1] or arr[i+1] do not exist, you may use 0.
+// Example
+// Input: arr = [4,6,1,2]
+// Output: [10, 11, 9, 3]
+
+const mutateArray = (arr) => {
+  let arr1 = [];
+  for (let i = 0; i < arr.length; i++) {
+    arr1.push(arr[i]);
+    before = arr1[i - 1] || 0;
+    let after = arr[i + 1] || 0;
+    arr[i] = before + after + arr[i];
+  }
+  return arr;
+};
+
+console.log("mutate", mutateArray([3, 7, 2, 6, 1]));

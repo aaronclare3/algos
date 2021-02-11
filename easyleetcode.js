@@ -150,7 +150,7 @@ const romanToInt = (s) => {
 // to the current letter in the first word, we just return the current prefix. If they do match, we take the current prefix and add the letter,
 // and move to the next letter in the first word. If they match all the way through the first word we can return the prefix
 
-var longestCommonPrefix = (strs) => {
+const longestCommonPrefix = (strs) => {
   let prefix = "";
   if (strs.length == 0) return prefix;
   for (let i = 0; i < strs[0].length; i++) {
@@ -167,7 +167,7 @@ var longestCommonPrefix = (strs) => {
 // here we want to use a stack because for each open bracket, we want to push it onto the stack, and for each closing bracket, we want to make sure it matches the most recent opening bracket
 // If either we loop and find a character that does not match, or we finish looping and the stack is not empty, we know we do not have matching parenthesis
 
-var isValid = (s) => {
+const isValid = (s) => {
   let stack = [];
   for (let i = 0; i < s.length; i++) {
     switch (s[i]) {
@@ -192,7 +192,7 @@ var isValid = (s) => {
 //----- SUBTRACT PRODUCT AND SUM ------- //
 // Given a number n, take the product of each digit and subtract it from the sum of each digit.
 
-var subtractProductAndSum = function (n) {
+const subtractProductAndSum = function (n) {
   let x = n.toString().split("");
   let prod = 0;
   let sum = 0;
@@ -207,7 +207,7 @@ var subtractProductAndSum = function (n) {
   return prod - sum;
 };
 
-var subtractProductAndSum = (n) => {
+const subtractProductAndSum = (n) => {
   let digits = Array.from(String(n), Number);
   let sum = digits.reduce((a, b) => a + b);
   let prod = digits.reduce((a, b) => a * b);
@@ -218,7 +218,7 @@ var subtractProductAndSum = (n) => {
 // Given a string, determine the max depth of the parentheses. If there are none, return 0
 
 // My initial thought was to use a stack, as I have used that before in a parentheses problem, but after completing it, we can refactor it to be better
-var maxDepth = function (s) {
+const maxDepth = (s) => {
   let stack = [];
   let max = 0;
   for (let i = 0; i < s.length; i++) {
@@ -239,7 +239,7 @@ var maxDepth = function (s) {
 
 // Instead of using an array that acts like a stack, we could just use a variable to count the open parentheses and subtract one for the close parentheses.
 // After all, that is basically what we did in the top one, we just inefficiently used an array
-var maxDepth = (s) => {
+const maxDepth = (s) => {
   let count = 0;
   let max = 0;
   for (let i = 0; i < s.length; i++) {
@@ -273,7 +273,7 @@ var maxDepth = (s) => {
 //----- Unique Chars - CTCI 1.1 ------- //
 // Check if all characters in a given string are unique
 
-var areCharsUnique = (str) => {
+const areCharsUnique = (str) => {
   for (let i = 0; i < str.length; i++) {
     for (let x = i + 1; x < str.length; x++) {
       if (str[i] == str[x]) {
@@ -284,7 +284,7 @@ var areCharsUnique = (str) => {
   return true;
 };
 
-var charsUnique = (str) => {
+const charsUnique = (str) => {
   let newObj = {};
   for (let i = 0; i < str.length; i++) {
     let val = str[i];
@@ -300,7 +300,7 @@ var charsUnique = (str) => {
 //----- String Permutation CTCI 1.2 ------- //
 // Given 2 strings, check whether they are permutations of each other
 
-var checkPerms = (str1, str2) => {
+const checkPerms = (str1, str2) => {
   if (str1.length != str2.length) {
     return false;
   }
@@ -315,7 +315,7 @@ var checkPerms = (str1, str2) => {
   return true;
 };
 
-var checkPerms = (str1, str2) => {
+const checkPerms = (str1, str2) => {
   if (str1.length !== str2.length) {
     return false;
   }
@@ -343,7 +343,7 @@ var checkPerms = (str1, str2) => {
 //----- URLify CTCI 1.3 ------- //
 // Given a string and a number n, replace every space with %20. n represents the final length that the string should be. If there is extra room at the end, add spaces.
 
-var URLify = (str) => {
+const URLify = (str) => {
   let arr = str.split("");
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] == " ") {
@@ -353,7 +353,7 @@ var URLify = (str) => {
   return arr.join("");
 };
 
-var URLify = (str, n) => {
+const URLify = (str, n) => {
   let count = 0;
   let newStr = "";
   for (let i = 0; i < str.length; i++) {
@@ -380,7 +380,7 @@ var URLify = (str, n) => {
 //----- Palindrome Permutations CTCI 1.4 ------- //
 // Given a string, determine whether or not it is a permutation of a palindrome. (Ex. "omm" is true because it could be rearranged to spell mom. "raecacr" is also true because you can rearrange it to spell racecar)
 
-var palPerm = (str) => {
+const palPerm = (str) => {
   let obj = {};
   for (let i = 0; i < str.length; i++) {
     let x = str[i];
@@ -412,7 +412,7 @@ console.log(
 //----- One Edit Away CTCI 1.5 ------- //
 // Given 2 strings, determine whether they are just one edit away. An edit can be an insertion of a letter, a deletion of a letter, or a replacement of a letter.
 
-var checkEdits = (str1, str2) => {
+const checkEdits = (str1, str2) => {
   // If they are more than 1 length apart, they can't be one edit away
   if (Math.abs(str1.length - str2.length) > 1) {
     return false;
@@ -450,7 +450,7 @@ var checkEdits = (str1, str2) => {
   return count > 1 ? false : true;
 };
 
-var stringCompression = (str) => {
+const stringCompression = (str) => {
   let num = 1;
   let finalStr = "";
   for (let i = 0; i < str.length; i++) {
@@ -465,7 +465,7 @@ var stringCompression = (str) => {
   return finalStr.length > str.length ? str : finalStr;
 };
 
-var stringCompression = (str) => {
+const stringCompression = (str) => {
   let num = 0;
   let finalStr = "";
   for (let i = 0; i < str.length; i++) {
@@ -607,7 +607,7 @@ const arrayStringsAreEqual = (word1, word2) => {
   return word1.join("") == word2.join("");
 };
 
-var sumOddLengthSubarrays = function (arr) {
+const sumOddLengthSubarrays = function (arr) {
   let tot = 0;
   let num = 0;
   while (num < arr.length) {
@@ -1039,5 +1039,4 @@ const mutateArray = (arr) => {
   }
   return arr;
 };
-
 console.log("mutate", mutateArray([3, 7, 2, 6, 1]));

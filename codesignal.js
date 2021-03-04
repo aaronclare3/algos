@@ -77,3 +77,62 @@ const allLongestStrings = (inputArray) => {
   }
   return newArr;
 };
+
+// Given two strings, find the number of common characters between them.
+// For s1 = "aabcc" and s2 = "adcaa", the output should be
+// commonCharacterCount(s1, s2) = 3.
+// Strings have 3 common characters - 2 "a"s and 1 "c".
+
+const commonCharacterCount = (s1, s2) => {
+  let count = 0;
+  let a1 = s1.split("");
+  let a2 = s2.split("");
+  for (let i = 0; i < a1.length; i++) {
+    for (let j = 0; j < a2.length; j++) {
+      if (a1[i] === a2[j]) {
+        count++;
+        a1.splice(i, 1);
+        a2.splice(j, 1);
+        i--;
+        j--;
+      }
+    }
+  }
+  return count;
+};
+
+// Ticket numbers usually consist of an even number of digits. A ticket number is considered lucky if the sum of the first half of the digits is equal to the sum of the second half.
+// Given a ticket number n, determine if it's lucky or not.
+// For n = 1230, the output should be
+// isLucky(n) = true;
+// For n = 239017, the output should be
+// isLucky(n) = false.
+
+const isLucky = (n) => {
+  let x = n.toString();
+  let one = 0;
+  let two = 0;
+  for (let i = 0; i < x.length; i++) {
+    if (i < x.length / 2) {
+      one += Number(x[i]);
+    } else {
+      two += Number(x[i]);
+    }
+  }
+  return one === two;
+};
+
+//Some people are standing in a row in a park. There are trees between them which cannot be moved. Your task is to rearrange the people by their heights in a non-descending order without moving the trees. People can be very tall!
+// For a = [-1, 150, 190, 170, -1, -1, 160, 180], the output should be sortByHeight(a) = [-1, 150, 160, 170, -1, -1, 180, 190].
+
+const sortByHeight = (a) => {
+  var s = a.filter((h) => h > 0).sort((a, b) => a - b);
+  console.log(s, a);
+  return a.map((p) => {
+    if (p !== -1) {
+      return s.shift();
+    }
+
+    return -1;
+  });
+};

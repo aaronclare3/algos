@@ -26,3 +26,54 @@ const matrixElementsSum = (matrix) => {
   }
   return count;
 };
+
+// Given a sequence of integers as an array, determine whether it is possible to obtain a strictly increasing sequence by removing no more than one element from the array.
+// For sequence = [1, 3, 2, 1], the output should be
+// almostIncreasingSequence(sequence) = false.
+// There is no one element in this array that can be removed in order to get a strictly increasing sequence.
+
+const almostIncreasingSequence = (sequence) => {
+  let count = 0;
+  for (let i = 0; i < sequence.length - 1; i++) {
+    if (sequence[i] >= sequence[i + 1]) {
+      // if it is the last element that is out of place, or the out of place one is in between, cut it out
+      if (!sequence[i + 2] || sequence[i + 2] > sequence[i]) {
+        sequence.splice(i + 1, 1);
+        count++;
+        i--;
+      }
+      // cut out the current one
+      else {
+        sequence.splice(i, 1);
+        count++;
+        i--;
+      }
+      if (count >= 2) {
+        return false;
+      } else {
+        i--;
+      }
+    }
+  }
+  return true;
+};
+
+// Given an array of strings, return another array containing all of its longest strings.
+// For inputArray = ["aba", "aa", "ad", "vcd", "aba"], the output should be
+// allLongestStrings(inputArray) = ["aba", "vcd", "aba"].
+
+const allLongestStrings = (inputArray) => {
+  let newArr = [];
+  let maxLen = inputArray[0].length;
+  for (let i = 0; i < inputArray.length; i++) {
+    if (inputArray[i].length > maxLen) {
+      maxLen = inputArray[i].length;
+    }
+  }
+  for (let i = 0; i < inputArray.length; i++) {
+    if (inputArray[i].length === maxLen) {
+      newArr.push(inputArray[i]);
+    }
+  }
+  return newArr;
+};

@@ -136,3 +136,36 @@ const sortByHeight = (a) => {
     return -1;
   });
 };
+
+// You are given an n x n 2D matrix that represents an image. Rotate the image by 90 degrees (clockwise).
+// input
+// a = [[1, 2, 3],
+//      [4, 5, 6],
+//      [7, 8, 9]]
+// output
+// rotateImage(a) =
+//     [[7, 4, 1],
+//      [8, 5, 2],
+//      [9, 6, 3]]
+
+// What helped me finally understand this problem was that what we need to do is change the rows to columns and columns to rows. For example, the first row becomes the last column and the last row becomes the first column. So what we do first is swap the rows and columns so columns are rows and rows are columns. Then all we have to do is flip the first column and the last column
+function rotateImage(a) {
+  let n = a.length;
+  // first we turn the rows into columns and the columns into rows
+  for (let row = 0; row < n; row++) {
+    for (let col = row; col < a[row].length; col++) {
+      let temp = a[row][col];
+      a[row][col] = a[col][row];
+      a[col][row] = temp;
+    }
+  }
+  // then all we have to do is swap the first column with the last column
+  for (let row = 0; row < n; row++) {
+    for (let col = 0; col < Math.floor(n / 2); col++) {
+      let temp = a[row][n - 1 - col];
+      a[row][n - 1 - col] = a[row][col];
+      a[row][col] = temp;
+    }
+  }
+  return a;
+}

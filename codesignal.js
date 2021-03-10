@@ -218,3 +218,30 @@ function firstNotRepeatingCharacter(s) {
   }
   return min === null ? "_" : s[min];
 }
+
+// Write a function that reverses characters in (possibly nested) parentheses in the input string.
+// Input strings will always be well-formed with matching ()s.
+// Example
+// For inputString = "(bar)", the output should be reverseInParentheses(inputString) = "rab";
+// For inputString = "foo(bar)baz", the output should be reverseInParentheses(inputString) = "foorabbaz";
+// For inputString = "foo(bar)baz(blim)", the output should be reverseInParentheses(inputString) = "foorabbazmilb";
+// For inputString = "foo(bar(baz))blim", the output should be reverseInParentheses(inputString) = "foobazrabblim".
+// Because "foo(bar(baz))blim" becomes "foo(barzab)blim" and then "foobazrabblim".
+const reverseInParentheses = (str) => {
+  while (str.includes("(")) {
+    let index1 = str.lastIndexOf("(");
+    let index2 = index1;
+    while (str[index2] != ")") {
+      index2++;
+    }
+    let middle = str
+      .substring(index1 + 1, index2)
+      .split("")
+      .reverse()
+      .join("");
+    let front = str.substring(0, index1);
+    let end = str.substring(index2 + 1, str.length);
+    str = front + middle + end;
+  }
+  return str;
+};

@@ -299,3 +299,19 @@ const areEquallyStrong = (yourLeft, yourRight, friendsLeft, friendsRight) => {
     Math.min(friendsLeft, friendsRight) === Math.min(yourRight, yourLeft)
   );
 };
+
+// Given an array of integers, find the maximal absolute difference between any two of its adjacent elements.
+// Example
+// For inputArray = [2, 4, 1, 0], the output should be
+// arrayMaximalAdjacentDifference(inputArray) = 3.
+
+const arrayMaximalAdjacentDifference = (arr) => {
+  let max = 0;
+  for (let i = 0; i < arr.length - 1; i++) {
+    let diff = Math.abs(arr[i] - arr[i + 1]);
+    if (diff > max) {
+      max = diff;
+    }
+  }
+  return max;
+};

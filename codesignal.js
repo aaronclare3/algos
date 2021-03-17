@@ -315,3 +315,48 @@ const arrayMaximalAdjacentDifference = (arr) => {
   }
   return max;
 };
+
+// In the popular Minesweeper game you have a board with some mines and those cells that don't contain a mine have a number in it that indicates the total number of mines in the neighboring cells. Starting off with some arrangement of mines we want to create a Minesweeper game setup.
+
+// matrix = [[true, false, false],
+// [false, true, false],
+// [false, false, false]]
+
+// minesweeper(matrix) = [[1, 2, 1],
+// [2, 1, 1],
+// [1, 1, 1]]
+
+function minesweeper(matrix) {
+  let newArr = [];
+  for (let i = 0; i < matrix.length; i++) {
+    let row = [];
+    for (let j = 0; j < matrix[i].length; j++) {
+      let count;
+      // set count to -1 because it'll hit itself once and we don't want to include itself
+      if (matrix[i][j] === true) {
+        count = -1;
+      } else {
+        count = 0;
+      }
+      for (let y = i - 1; y < i + 2; y++) {
+        for (let z = j - 1; z < j + 2; z++) {
+          // if row or col are outside of the array, continue
+          if (
+            y < 0 ||
+            y > matrix.length - 1 ||
+            z < 0 ||
+            z > matrix[0].length - 1
+          ) {
+            continue;
+          }
+          if (matrix[y][z] === true) {
+            count++;
+          }
+        }
+      }
+      row.push(count);
+    }
+    newArr.push(row);
+  }
+  return newArr;
+}

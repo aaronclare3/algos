@@ -380,3 +380,40 @@ function variableName(name) {
   }
   return true;
 }
+
+// Given a string, your task is to replace each of its characters by the next one in the English alphabet; i.e. replace a with b, replace b with c, etc (z would be replaced by a).
+// Example
+// For inputString = "crazy", the output should be alphabeticShift(inputString) = "dsbaz".
+
+function alphabeticShift(str) {
+  str = str.split("");
+  for (let s in str) {
+    str[s] =
+      str[s] === "z" ? "a" : String.fromCharCode(str[s].charCodeAt() + 1);
+  }
+  return str.join("");
+}
+
+// Given two cells on the standard chess board, determine whether they have the same color or not.
+// For cell1 = "A1" and cell2 = "C3", the output should be
+// chessBoardCellColor(cell1, cell2) = true.
+
+function chessBoardCellColor(cell1, cell2) {
+  let celly1;
+  let celly2;
+  if (
+    // both the ascii of the letter and the number are even or both are odd
+    (cell1[0].charCodeAt() % 2 === 0 && cell1[1] % 2 === 0) ||
+    (cell1[0].charCodeAt() % 2 !== 0 && cell1[1] % 2 !== 0)
+  ) {
+    celly1 = "bothEvenOrBothOdd";
+  }
+  if (
+    // both the ascii of the letter and the number are even or both are odd
+    (cell2[0].charCodeAt() % 2 === 0 && cell2[1] % 2 === 0) ||
+    (cell2[0].charCodeAt() % 2 !== 0 && cell2[1] % 2 !== 0)
+  ) {
+    celly2 = "bothEvenOrBothOdd";
+  }
+  return celly1 === celly2;
+}

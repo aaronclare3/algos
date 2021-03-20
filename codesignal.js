@@ -449,3 +449,44 @@ function depositProfit(deposit, rate, threshold) {
   }
   return years;
 }
+
+// Given a sorted array of integers a, your task is to determine which element of a is closest to all other values of a. In other words, find the element x in a, which minimizes the following sum:
+// abs(a[0] - x) + abs(a[1] - x) + ... + abs(a[a.length - 1] - x)
+// (where abs denotes the absolute value)
+// If there are several possible answers, output the smallest one.
+// Example
+// For a = [2, 4, 7], the output should be absoluteValuesSumMinimization(a) = 4.
+// for x = 2, the value will be abs(2 - 2) + abs(4 - 2) + abs(7 - 2) = 7.
+// for x = 4, the value will be abs(2 - 4) + abs(4 - 4) + abs(7 - 4) = 5.
+// for x = 7, the value will be abs(2 - 7) + abs(4 - 7) + abs(7 - 7) = 8.
+// The lowest possible value is when x = 4, so the answer is 4.
+
+function absoluteValuesSumMinimization(a) {
+  let min = 1000000000;
+  let minIdx = 0;
+  for (let i = 0; i < a.length; i++) {
+    let countEach = 0;
+    for (let j = 0; j < a.length; j++) {
+      countEach += Math.abs(a[j] - a[i]);
+    }
+    if (countEach < min) {
+      min = countEach;
+      minIdx = i;
+    }
+  }
+  return a[minIdx];
+}
+
+// Given array of integers, remove each kth element from it.
+// Example
+// For inputArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] and k = 3, the output should be
+// extractEachKth(inputArray, k) = [1, 2, 4, 5, 7, 8, 10].
+
+function extractEachKth(inputArray, k) {
+  k = k - 1;
+  if (k === 0) return [];
+  for (let i = k; i < inputArray.length; i += k) {
+    inputArray.splice(i, 1);
+  }
+  return inputArray;
+}

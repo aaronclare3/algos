@@ -490,3 +490,9 @@ function extractEachKth(inputArray, k) {
   }
   return inputArray;
 }
+
+const extractEachKth1 = (arr, k) => {
+  return arr.filter((_, i) => (i + 1) % k);
+};
+
+console.log(extractEachKth1([1, 2, 3, 4, 5, 6], 3));

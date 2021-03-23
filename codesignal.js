@@ -523,3 +523,26 @@ const differentSymbolsNaive = (s) => {
   }
   return count;
 };
+
+// Given array of integers, find the maximal possible sum of some of its k consecutive elements.
+// Example
+// For inputArray = [2, 3, 5, 1, 6] and k = 2, the output should be
+// arrayMaxConsecutiveSum(inputArray, k) = 8.
+// All possible sums of 2 consecutive elements are:
+// 2 + 3 = 5;
+// 3 + 5 = 8;
+// 5 + 1 = 6;
+// 1 + 6 = 7.
+// Thus, the answer is 8.
+
+const arrayMaxConsecutiveSum = (a, k) => {
+  let max = null;
+  for (let i = 0; i < a.length - k + 1; i++) {
+    let add = 0;
+    for (let y = i; y < i + k; y++) {
+      add += a[y];
+    }
+    if (max === null || add > max) max = add;
+  }
+  return max;
+};

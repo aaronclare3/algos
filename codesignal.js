@@ -494,5 +494,13 @@ function extractEachKth(inputArray, k) {
 const extractEachKth1 = (arr, k) => {
   return arr.filter((_, i) => (i + 1) % k);
 };
-
 console.log(extractEachKth1([1, 2, 3, 4, 5, 6], 3));
+
+//Find the leftmost digit that occurs in a given string.
+// Example
+// For inputString = "var_1__Int", the output should be
+// firstDigit(inputString) = '1';
+
+const firstDigit = (inputString) => {
+  return inputString.match(/[0-9]/g)[0];
+};

@@ -504,3 +504,22 @@ console.log(extractEachKth1([1, 2, 3, 4, 5, 6], 3));
 const firstDigit = (inputString) => {
   return inputString.match(/[0-9]/g)[0];
 };
+
+// Given a string, find the number of different characters in it.
+// Example
+// For s = "cabca", the output should be
+// differentSymbolsNaive(s) = 3.
+// There are 3 different characters a, b and c.
+
+const differentSymbolsNaive = (s) => {
+  let x = {};
+  let count = 0;
+  for (let i = 0; i < s.length; i++) {
+    let curr = s[i];
+    if (!x[curr]) {
+      count++;
+      x[curr] = 1;
+    }
+  }
+  return count;
+};

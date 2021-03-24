@@ -572,3 +572,23 @@ const digitDegree = (n) => {
   }
   return count;
 };
+
+// Given the positions of a white bishop and a black pawn on the standard chess board, determine whether the bishop can capture the pawn in one move.
+// The bishop has no restrictions in distance for each move, but is limited to diagonal movement. Check out the example below to see how it can move:
+
+const bishopAndPawn = (bishop, pawn) => {
+  let obj = {
+    a: 8,
+    b: 7,
+    c: 6,
+    d: 5,
+    e: 4,
+    f: 3,
+    g: 2,
+    h: 1,
+  };
+  return Math.abs(obj[pawn[0]] - obj[bishop[0]]) ===
+    Math.abs(pawn[1] - bishop[1])
+    ? true
+    : false;
+};

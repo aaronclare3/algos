@@ -648,3 +648,17 @@ const checkBucket = (arr) => {
 const findEmailDomain = (address) => {
   return address.slice(address.lastIndexOf("@") + 1);
 };
+
+// Given a string, return the shortest possible palindrome that can be created by adding to it.
+const buildPalindrome = (st) => {
+  if (isPalindrome(st)) return st;
+  for (var i = 0; i < st.length; i++) {
+    if (isPalindrome(st.slice(i, st.length))) {
+      return st + Array.from(st.slice(0, i)).reverse().join("");
+    }
+  }
+};
+
+const isPalindrome = (string) => {
+  return string == Array.from(string).reverse().join("");
+};

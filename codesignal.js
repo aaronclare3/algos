@@ -718,3 +718,23 @@ function chessKnight(cell) {
   valid(spots[cell[0]] + 2, Number(cell[1]) + 1);
   return count;
 }
+
+// Given some integer, find the maximal number you can obtain by deleting exactly one digit of the given number.
+// Example
+// For n = 152, the output should be
+// deleteDigit(n) = 52;
+// For n = 1001, the output should be
+// deleteDigit(n) = 101.
+
+function deleteDigit(n) {
+  let options = [];
+  let x = n.toString();
+  for (let i = 0; i < x.length; i++) {
+    options.push(x.slice(0, i) + x.slice(i + 1, x.length));
+  }
+  let max = Number(options[0]);
+  for (let i = 1; i < options.length; i++) {
+    if (Number(options[i]) > max) max = Number(options[i]);
+  }
+  return max;
+}

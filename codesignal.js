@@ -687,3 +687,34 @@ function lineEncoding(s) {
   }
   return newS;
 }
+
+// Given a position of a knight on the standard chessboard, find the number of different moves the knight can perform.
+// The knight can move to a square that is two squares horizontally and one square vertically, or two squares vertically and one square horizontally away from it. The complete move therefore looks like the letter L. Check out the image below to see all valid moves for a knight piece that is placed on one of the central squares.
+function chessKnight(cell) {
+  let spots = {
+    a: 8,
+    b: 7,
+    c: 6,
+    d: 5,
+    e: 4,
+    f: 3,
+    g: 2,
+    h: 1,
+  };
+  let count = 0;
+  const valid = (x, y) => {
+    console.log(x, y);
+    if (x < 9 && x > 0 && y < 9 && y > 0) {
+      count++;
+    }
+  };
+  valid(spots[cell[0]] - 2, Number(cell[1]) - 1);
+  valid(spots[cell[0]] - 1, Number(cell[1]) - 2);
+  valid(spots[cell[0]] - 1, Number(cell[1]) + 2);
+  valid(spots[cell[0]] - 2, Number(cell[1]) + 1);
+  valid(spots[cell[0]] + 1, Number(cell[1]) + 2);
+  valid(spots[cell[0]] + 1, Number(cell[1]) - 2);
+  valid(spots[cell[0]] + 2, Number(cell[1]) - 1);
+  valid(spots[cell[0]] + 2, Number(cell[1]) + 1);
+  return count;
+}

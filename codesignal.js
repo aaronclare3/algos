@@ -742,29 +742,44 @@ function deleteDigit(n) {
 // Define a word as a sequence of consecutive English letters. Find the longest word from the given string.
 // Example
 // For text = "Ready, steady, go!", the output should be
+// longestWord(text) = "steady".
 
-longestWord(text) = "steady".
 function longestWord(text) {
   let bucket = [];
   let word = "";
-  for(let i = 0; i < text.length; i++){
-      if(/^[A-Za-z]/.test(text[i])) {
-          word+=text[i];
-      }else{
-          bucket.push(word);
-          word = "";
-      }
-      if(i === text.length-1){
-          bucket.push(word);    
-      }
+  for (let i = 0; i < text.length; i++) {
+    if (/^[A-Za-z]/.test(text[i])) {
+      word += text[i];
+    } else {
+      bucket.push(word);
+      word = "";
+    }
+    if (i === text.length - 1) {
+      bucket.push(word);
+    }
   }
   let max = 0;
   let idx = 0;
-  for(let i = 0; i < bucket.length; i++){
-      if(bucket[i].length > max){
-          max = bucket[i].length;
-          idx = i;
-      }
+  for (let i = 0; i < bucket.length; i++) {
+    if (bucket[i].length > max) {
+      max = bucket[i].length;
+      idx = i;
+    }
   }
   return bucket[idx];
+}
+
+// Check if the given string is a correct time representation of the 24-hour clock.
+// Example
+// For time = "13:58", the output should be
+// validTime(time) = true;
+// For time = "25:51", the output should be
+// validTime(time) = false;
+// For time = "02:76", the output should be
+// validTime(time) = false.
+
+function validTime(time) {
+  if (Number(time.substring(0, 2)) < 24 && Number(time.substring(3, 5)) < 60)
+    return true;
+  return false;
 }

@@ -899,3 +899,63 @@ function messageFromBinaryCode(code) {
   }
   return ans;
 }
+
+// Construct a square matrix with a size N × N containing integers from 1 to N * N in a spiral order, starting from top-left and in clockwise direction.
+// Example
+// For n = 3, the output should be
+// spiralNumbers(n) = [[1, 2, 3],
+//                     [8, 9, 4],
+//                     [7, 6, 5]]
+
+function spiralNumbers(n) {
+  let count = 1;
+  let ans = [];
+  // create a matrix with 0 values
+  for (let i = 0; i < n; i++) {
+    let row = [];
+    for (let j = 0; j < n; j++) {
+      row.push(0);
+    }
+    ans.push(row);
+  }
+  let r = 0;
+  let c = 0;
+  let loops = 0;
+  while (count <= n * n) {
+    while (c < n - loops) {
+      ans[r][c] = count;
+      count++;
+      c++;
+    }
+    // keep column same, add one row
+    c--;
+    r++;
+    while (r < n - loops) {
+      ans[r][c] = count;
+      count++;
+      r++;
+    }
+    // keep row same, subtract one column
+    r--;
+    c--;
+    while (c >= 0 + loops) {
+      ans[r][c] = count;
+      count++;
+      c--;
+    }
+    // keep column same, subtract one row
+    r--;
+    c++;
+    while (r > 0 + loops) {
+      ans[r][c] = count;
+      count++;
+      r--;
+    }
+    // keep row same, add one column
+    r++;
+    c++;
+    // add a loop because we don't want to override the values we already changed
+    loops++;
+  }
+  return ans;
+}

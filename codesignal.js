@@ -862,3 +862,26 @@ function digitsProduct(product) {
   }
   return -1;
 }
+
+// You are given an array of desired filenames in the order of their creation. Since two files cannot have equal names, the one which comes later will have an addition to its name in a form of (k), where k is the smallest positive integer such that the obtained name is not used yet.
+// Return an array of names that will be given to the files.
+// Example
+// For names = ["doc", "doc", "image", "doc(1)", "doc"], the output should be
+// fileNaming(names) = ["doc", "doc(1)", "image", "doc(1)(1)", "doc(2)"].
+
+function fileNaming(names) {
+  let obj = {};
+  for (let i = 0; i < names.length; i++) {
+    let curr = names[i];
+    let dups = 1;
+    obj[curr] = 1;
+    if (obj[names[i + 1]]) {
+      while (obj[names[i + 1] + "(" + dups + ")"]) {
+        dups++;
+      }
+      obj[names[i + 1] + "(" + dups + ")"] = 1;
+      names[i + 1] = names[i + 1] + "(" + dups + ")";
+    }
+  }
+  return names;
+}

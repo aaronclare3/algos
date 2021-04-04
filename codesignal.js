@@ -738,3 +738,33 @@ function deleteDigit(n) {
   }
   return max;
 }
+
+// Define a word as a sequence of consecutive English letters. Find the longest word from the given string.
+// Example
+// For text = "Ready, steady, go!", the output should be
+
+longestWord(text) = "steady".
+function longestWord(text) {
+  let bucket = [];
+  let word = "";
+  for(let i = 0; i < text.length; i++){
+      if(/^[A-Za-z]/.test(text[i])) {
+          word+=text[i];
+      }else{
+          bucket.push(word);
+          word = "";
+      }
+      if(i === text.length-1){
+          bucket.push(word);    
+      }
+  }
+  let max = 0;
+  let idx = 0;
+  for(let i = 0; i < bucket.length; i++){
+      if(bucket[i].length > max){
+          max = bucket[i].length;
+          idx = i;
+      }
+  }
+  return bucket[idx];
+}

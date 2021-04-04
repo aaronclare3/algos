@@ -840,3 +840,25 @@ function differentSquares(matrix) {
   }
   return count;
 }
+
+// Given an integer product, find the smallest positive (i.e. greater than 0) integer the product of whose digits is equal to product. If there is no such integer, return -1 instead.
+// Example
+// For product = 12, the output should be
+// digitsProduct(product) = 26;
+// For product = 19, the output should be
+// digitsProduct(product) = -1.
+
+function digitsProduct(product) {
+  let y = 1;
+  while (y < 10000) {
+    y = y.toString();
+    let sum = 1;
+    for (let i = 0; i < y.length; i++) {
+      sum *= Number(y[i]);
+    }
+    if (sum === product) return Number(y);
+    y = Number(y);
+    y++;
+  }
+  return -1;
+}
